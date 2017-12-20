@@ -4,14 +4,14 @@
     - name: Install "nodejs"
       shell: |
         curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-        sudo apt install nodejs -y
-        sudo npm update -g
+        apt install nodejs -y
+        npm update -g
 
     - name: Install global npm package "create-react-app"
-      shell: sudo npm install create-react-app -g
+      shell: npm install create-react-app -g
 
     - name: Install global npm package "serve"
-      shell: sudo npm install serve -g
+      shell: npm install serve -g
 
     - name: Install "cmake"
       apt:
