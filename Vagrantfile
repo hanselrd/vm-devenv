@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder ".", "/vagrant",
     type: "rsync",
-    rsync_exclude: [
+    rsync__exclude: [
       ".vagrant/",
       ".git/"
     ]
