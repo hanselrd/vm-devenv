@@ -47,12 +47,23 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
 
+<<<<<<< HEAD
   config.vm.synced_folder ".", "/vagrant",
     type: "rsync",
     rsync__exclude: [
       ".vagrant/",
       ".git/"
     ]
+=======
+  # config.vm.synced_folder ".", "/vagrant",
+  #   type: "rsync",
+  #   rsync__exclude: [
+  #     ".vagrant/",
+  #     ".git/"
+  #   ]
+
+  config.vm.synced_folder ".", "/vagrant", type: "smb"
+>>>>>>> 470f40fc12e81cf711f2afe8e9fa7578100e808d
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
