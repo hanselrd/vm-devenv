@@ -12,6 +12,9 @@
 
     - name: Install global npm package "serve"
       shell: npm install serve -g
+      
+    - name: Install global npm package "firebase-tools"
+      shell: npm install firebase-tools -g
 
     - name: Install "cmake"
       apt:
