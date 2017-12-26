@@ -18,6 +18,12 @@
       args:
         executable: /bin/bash
 
+    - name: Update "npm"
+      become_user: ubuntu
+      shell: . ~/.nvm/nvm.sh && npm install npm -g
+      args:
+        executable: /bin/bash
+
     - name: Install global npm package "create-react-app"
       become_user: ubuntu
       shell: . ~/.nvm/nvm.sh && npm install create-react-app -g
