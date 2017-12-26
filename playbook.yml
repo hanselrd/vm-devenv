@@ -1,20 +1,40 @@
 - hosts: all
-  become: yes
+  become: true
   tasks:
-    - name: Install "nodejs"
-      shell: |
-        curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-        apt install nodejs -y
-        npm update -g
+    - name: Clone "nvm" repository
+      become_user: ubuntu
+      git:
+        repo: https://github.com/creationix/nvm.git
+        dest: ~/.nvm
+        version: v0.33.8
+
+    - name: Install "nvm"
+      become_user: ubuntu
+      shell: ~/.nvm/install.sh
+
+    - name: Install "node"
+      become_user: ubuntu
+      shell: . ~/.nvm/nvm.sh && nvm install node
+      args:
+        executable: /bin/bash
 
     - name: Install global npm package "create-react-app"
-      shell: npm install create-react-app -g
+      become_user: ubuntu
+      shell: . ~/.nvm/nvm.sh && npm install create-react-app -g
+      args:
+        executable: /bin/bash
 
     - name: Install global npm package "serve"
-      shell: npm install serve -g
+      become_user: ubuntu
+      shell: . ~/.nvm/nvm.sh && npm install serve -g
+      args:
+        executable: /bin/bash
 
     - name: Install global npm package "firebase-tools"
-      shell: npm install firebase-tools -g
+      become_user: ubuntu
+      shell: . ~/.nvm/nvm.sh && npm install firebase-tools -g
+      args:
+        executable: /bin/bash
 
     - name: Install "cmake"
       apt:
