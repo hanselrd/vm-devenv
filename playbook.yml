@@ -2,42 +2,42 @@
   become: true
   tasks:
     - name: Clone "nvm" repository
-      become_user: ubuntu
+      become_user: vagrant
       git:
         repo: https://github.com/creationix/nvm.git
         dest: ~/.nvm
         version: v0.33.8
 
     - name: Install "nvm"
-      become_user: ubuntu
+      become_user: vagrant
       shell: ~/.nvm/install.sh
 
     - name: Install "node"
-      become_user: ubuntu
+      become_user: vagrant
       shell: . ~/.nvm/nvm.sh && nvm install node
       args:
         executable: /bin/bash
 
     - name: Update "npm"
-      become_user: ubuntu
+      become_user: vagrant
       shell: . ~/.nvm/nvm.sh && npm install npm -g
       args:
         executable: /bin/bash
 
     - name: Install global npm package "create-react-app"
-      become_user: ubuntu
+      become_user: vagrant
       shell: . ~/.nvm/nvm.sh && npm install create-react-app -g
       args:
         executable: /bin/bash
 
     - name: Install global npm package "serve"
-      become_user: ubuntu
+      become_user: vagrant
       shell: . ~/.nvm/nvm.sh && npm install serve -g
       args:
         executable: /bin/bash
 
     - name: Install global npm package "firebase-tools"
-      become_user: ubuntu
+      become_user: vagrant
       shell: . ~/.nvm/nvm.sh && npm install firebase-tools -g
       args:
         executable: /bin/bash
