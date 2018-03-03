@@ -24,33 +24,9 @@
       args:
         executable: /bin/bash
 
-    - name: Install global npm package "nodemon"
+    - name: Install global npm package "npx"
       become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install nodemon -g
-      args:
-        executable: /bin/bash
-
-    - name: Install global npm package "create-react-app"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install create-react-app -g
-      args:
-        executable: /bin/bash
-
-    - name: Install global npm package "serve"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install serve -g
-      args:
-        executable: /bin/bash
-
-    - name: Install global npm package "firebase-tools"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install firebase-tools -g
-      args:
-        executable: /bin/bash
-
-    - name: Install global npm package "heroku-cli"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install heroku-cli -g
+      shell: . ~/.nvm/nvm.sh && npm install npx -g
       args:
         executable: /bin/bash
 
