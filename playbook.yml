@@ -1,34 +1,40 @@
 - hosts: all
   become: true
   tasks:
-    - name: Clone "nvm" repository
-      become_user: vagrant
-      git:
-        repo: https://github.com/creationix/nvm.git
-        dest: ~/.nvm
-        version: v0.33.8
+    # - name: Clone "nvm" repository
+    #   become_user: vagrant
+    #   git:
+    #     repo: https://github.com/creationix/nvm.git
+    #     dest: ~/.nvm
+    #     version: v0.33.8
 
-    - name: Install "nvm"
-      become_user: vagrant
-      shell: ~/.nvm/install.sh
+    # - name: Install "nvm"
+    #   become_user: vagrant
+    #   shell: ~/.nvm/install.sh
 
-    - name: Install "node"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && nvm install node
-      args:
-        executable: /bin/bash
+    # - name: Install "node"
+    #   become_user: vagrant
+    #   shell: . ~/.nvm/nvm.sh && nvm install node
+    #   args:
+    #     executable: /bin/bash
 
-    - name: Update "npm"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install npm -g
-      args:
-        executable: /bin/bash
+    # - name: Update "npm"
+    #   become_user: vagrant
+    #   shell: . ~/.nvm/nvm.sh && npm install npm -g
+    #   args:
+    #     executable: /bin/bash
 
-    - name: Install global npm package "npx"
-      become_user: vagrant
-      shell: . ~/.nvm/nvm.sh && npm install npx -g
-      args:
-        executable: /bin/bash
+    # - name: Install global npm package "firebase-tools"
+    #   become_user: vagrant
+    #   shell: . ~/.nvm/nvm.sh && npm install firebase-tools -g
+    #   args:
+    #     executable: /bin/bash
+
+    # - name: Install global npm package "heroku-cli"
+    #   become_user: vagrant
+    #   shell: . ~/.nvm/nvm.sh && npm install heroku-cli -g
+    #   args:
+    #     executable: /bin/bash
 
     - name: Install "postgresql"
       apt:
@@ -40,14 +46,25 @@
         name: postgresql-contrib
         state: present
 
+    - name: Configure "postgresql"
+      script: /vagrant/scripts/configure_postgres.sh
+
+    - name: Add repository for latest gcc/g++
+      apt_repository:
+        repo: ppa:ubuntu-toolchain-r/test
+        state: present
+
+    - name: Install "gcc/g++"
+      apt:
+        name: g++-7
+        state: present
+
+    - name: Update system version of gcc/g++
+      shell: update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+
     - name: Install "cmake"
       apt:
         name: cmake
-        state: present
-
-    - name: Install "g++/gcc"
-      apt:
-        name: g++
         state: present
 
     - name: Install "tree"
