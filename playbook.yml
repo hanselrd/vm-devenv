@@ -43,7 +43,7 @@
     - name: Configuring "postgresql"
       script: /vagrant/scripts/configure_postgres.sh
 
-    - name: Adding repository for latest gcc/g++
+    - name: Adding repository for latest "gcc/g++"
       apt_repository:
         repo: ppa:ubuntu-toolchain-r/test
         state: present
@@ -53,8 +53,13 @@
         name: g++-7
         state: present
 
-    - name: Updating system version of gcc/g++
+    - name: Updating system version of "gcc/g++"
       shell: update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+
+    - name: Adding repository for latest "cmake"
+      apt_repository:
+        repo: ppa:nschloe/cmake-nightly
+        state: present
 
     - name: Installing "cmake"
       apt:
