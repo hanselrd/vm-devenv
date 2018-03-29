@@ -1,34 +1,34 @@
 - hosts: all
   become: true
   tasks:
-    # - name: Cloning "nvm" repository
-    #   become_user: vagrant
-    #   git:
-    #     repo: https://github.com/creationix/nvm.git
-    #     dest: ~/.nvm
-    #     version: v0.33.8
+    - name: Cloning "nvm" repository
+      become_user: vagrant
+      git:
+        repo: https://github.com/creationix/nvm.git
+        dest: ~/.nvm
+        version: v0.33.8
 
-    # - name: Installing "nvm"
-    #   become_user: vagrant
-    #   shell: ~/.nvm/install.sh
+    - name: Installing "nvm"
+      become_user: vagrant
+      shell: ~/.nvm/install.sh
 
-    # - name: Installing "node"
-    #   become_user: vagrant
-    #   shell: . ~/.nvm/nvm.sh && nvm install node
-    #   args:
-    #     executable: /bin/bash
+    - name: Installing "node"
+      become_user: vagrant
+      shell: . ~/.nvm/nvm.sh && nvm install node
+      args:
+        executable: /bin/bash
 
-    # - name: Installing global npm package "firebase-tools"
-    #   become_user: vagrant
-    #   shell: . ~/.nvm/nvm.sh && npm install firebase-tools -g
-    #   args:
-    #     executable: /bin/bash
+    - name: Installing global npm package "firebase-tools"
+      become_user: vagrant
+      shell: . ~/.nvm/nvm.sh && npm install firebase-tools -g
+      args:
+        executable: /bin/bash
 
-    # - name: Installing global npm package "heroku-cli"
-    #   become_user: vagrant
-    #   shell: . ~/.nvm/nvm.sh && npm install heroku-cli -g
-    #   args:
-    #     executable: /bin/bash
+    - name: Installing global npm package "heroku-cli"
+      become_user: vagrant
+      shell: . ~/.nvm/nvm.sh && npm install heroku-cli -g
+      args:
+        executable: /bin/bash
 
     - name: Installing "postgresql"
       apt:
